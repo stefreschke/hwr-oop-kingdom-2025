@@ -1,75 +1,12 @@
-# HWR OOP Lecture Project Template
+# HWR OOP Kingdom (summer term 2025)
 
-[TODO]: # (Change README.md Headline to better fit to your project!)
-
-This repository contains a student project created for an ongoing lecture on object-oriented
-programming with Kotlin at HWR Berlin (summer term 2025).
+This repository contains an example project developed by teachers of the object oriented programming class at HWR Berlin in summer term 2025.
 
 > :warning: This code is for educational purposes only. Do not rely on it!
 
-## Prerequisites
-
-Installed:
-
-1. IDE of your choice (e.g. IntelliJ IDEA)
-2. JDK of choice installed (e.g. through IntelliJ IDEA)
-3. Maven installed (e.g. through IntelliJ IDEA)
-4. Git installed
-
-## Local Development
-
-This project uses [Apache Maven][maven] as build tool.
-
-To build from your shell (without an additional local installation of Maven), ensure that `./mvnw`
-is executable:
-
-```
-chmod +x ./mvnw
-```
-
-I recommend not to dive into details about Maven at the beginning.
-Instead, you can use [just][just] to build the project.
-It reads the repositories `justfile` which maps simplified commands to corresponding sensible Maven
-calls.
-
-With _just_ installed, you can simply run this command to perform a build of this project and run
-all of its tests:
-
-```
-just build
-```
-
 ## Abstract
 
-[TODO]: # (Write a short description of your project.)
-[TODO]: # (State most important features.)
-[TODO]: # (State the most interesting problems you encountered during the project.)
-
-## Feature List
-
-[TODO]: # (For each feature implemented, add a row to the table!)
-
-| Number | Feature | Tests |
-|--------|---------|-------|
-| 1      | /       | /     |
-
-## Additional Dependencies
-
-[TODO]: # (For each additional dependency your project requires- Add an additional row to the table!)
-
-| Number | Dependency Name | Dependency Description | Why is it necessary? |
-|--------|-----------------|------------------------|----------------------|
-| 1      | /               | /                      | /                    |
-
-## Instructions
-
-[TODO]: # (Remove these instructions once you finished your fork's setup.)
-
-Use a fork of this repository to do implement your project.
-
-Remember to add this repository as a second remote repository (upstream) and pull from the correct
-remotes.
-This is necessary, because we might apply changes to this template during the next month.
+This project implements a game similar to the popular card game. Similarities are purely random and unintentional.
 
 The following section describes how to add multiple remote repositories to your local repository,
 which is cloned from the fork.
