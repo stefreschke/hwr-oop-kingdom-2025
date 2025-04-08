@@ -5,9 +5,15 @@ import org.assertj.core.api.Assertions.assertThat
 
 class PlayerTest : AnnotationSpec() {
   @Test
-  fun `player Alice, has name Alice`() {
-    val name = "Alice"
+  fun `player, has name`() {
+    val name = "Dieter"
     val player = Player(name)
     assertThat(player.name).isEqualTo(name)
+  }
+  
+  @Test
+  fun `player Bob, has name Bob`() {
+    val player = Player("Bob")
+    assertThat(player.name).isEqualTo("Bob")
   }
 }

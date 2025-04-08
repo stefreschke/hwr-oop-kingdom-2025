@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
 class GameTest : AnnotationSpec() {
-
+  
   @Test
   fun `game with single player, game has correct player`() {
     // given
@@ -17,7 +17,7 @@ class GameTest : AnnotationSpec() {
       .hasSize(1)
       .contains(alice)
   }
-
+  
   @Test
   fun `player in game cards, five cards in hand`() {
     // given
@@ -30,7 +30,7 @@ class GameTest : AnnotationSpec() {
     assertThat(cardsInHand)
       .hasSize(5)
   }
-
+  
   @Test
   fun `player in game cards, five cards in deck`() {
     // given
@@ -42,5 +42,20 @@ class GameTest : AnnotationSpec() {
     // then
     assertThat(cardsInDeck)
       .hasSize(5)
+  }
+  
+  @Test
+  fun `play in game, cards, total cards, 3 anwesen, 7 kupfer`() {
+    // given
+    val alice = Player("Alice")
+    val game = Game(players = listOf(alice))
+    // when
+    val cardsRetrieved = game.cardsOf(alice)
+    val totalCards: List<Card> = cardsRetrieved.totalCards
+    // then
+    assertThat(totalCards)
+      .hasSize(10)
+      .matches { it.filter { it == Card.Anwesen }.size == 3 }
+      .matches { it.filter { it == Card.Kupfer }.size == 7 }
   }
 }
