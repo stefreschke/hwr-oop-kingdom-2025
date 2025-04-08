@@ -6,19 +6,33 @@ import org.assertj.core.api.Assertions.assertThat
 class MoneyCardsTest : AnnotationSpec() {
   
   @Test
-  fun `three kinds of money cards possible`() {
+  fun `kupfer, is money with purchase power 1`() {
     // given
     val kupfer = Card.Kupfer
-    val silber = Card.Silber
-    val gold = Card.Gold
     // when
-    val purchasePowerOfKupfer: Int = kupfer.purchasePower
-    val purchasePowerOfSilber: Int = silber.purchasePower
-    val purchasePowerOfGold: Int = gold.purchasePower
+    val purchasePowerOfKupfer = kupfer.purchasePower
     // then
     assertThat(purchasePowerOfKupfer).isEqualTo(1)
-    assertThat(purchasePowerOfSilber).isEqualTo(2)
-    assertThat(purchasePowerOfGold).isEqualTo(3)
+  }
+  
+  @Test
+  fun `silber, is money with purchase power 2`() {
+    // given
+    val silber = Card.Silber
+    // when
+    val purchasePowerOfKupfer = silber.purchasePower
+    // then
+    assertThat(purchasePowerOfKupfer).isEqualTo(2)
+  }
+  
+  @Test
+  fun `gold, is money with purchase power 3`() {
+    // given
+    val gold = Card.Gold
+    // when
+    val purchasePowerOfKupfer = gold.purchasePower
+    // then
+    assertThat(purchasePowerOfKupfer).isEqualTo(3)
   }
   
 }
