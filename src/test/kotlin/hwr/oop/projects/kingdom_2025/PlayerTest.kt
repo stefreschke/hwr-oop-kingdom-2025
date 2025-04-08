@@ -1,4 +1,4 @@
-package hwr.oop
+package hwr.oop.projects.kingdom_2025
 
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
