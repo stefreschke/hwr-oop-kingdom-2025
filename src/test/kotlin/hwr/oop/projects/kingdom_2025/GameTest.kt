@@ -5,11 +5,12 @@ import org.assertj.core.api.Assertions.assertThat
 
 class GameTest : AnnotationSpec() {
   
+  private val alice = Player("Alice")  // possible because player is immutable
+  private val game =
+    Game(players = listOf(alice))  // possible because game is immutable
+  
   @Test
   fun `game with single player, game has correct player`() {
-    // given
-    val alice = Player("Alice")
-    val game = Game(players = listOf(alice))
     // when
     val retrievedPlayers = game.players
     // then
@@ -21,10 +22,8 @@ class GameTest : AnnotationSpec() {
   @Test
   fun `player in game cards, five cards in hand`() {
     // given
-    val alice = Player("Alice")
-    val game = Game(players = listOf(alice))
-    // when
     val cardsRetrieved = game.cardsOf(alice)
+    // when
     val cardsInHand = cardsRetrieved.cardsInHand
     // then
     assertThat(cardsInHand)
@@ -34,10 +33,8 @@ class GameTest : AnnotationSpec() {
   @Test
   fun `player in game cards, five cards in deck`() {
     // given
-    val alice = Player("Alice")
-    val game = Game(players = listOf(alice))
-    // when
     val cardsRetrieved = game.cardsOf(alice)
+    // when
     val cardsInDeck = cardsRetrieved.cardsInDeck
     // then
     assertThat(cardsInDeck)
@@ -47,15 +44,28 @@ class GameTest : AnnotationSpec() {
   @Test
   fun `play in game, cards, total cards, 3 anwesen, 7 kupfer`() {
     // given
-    val alice = Player("Alice")
-    val game = Game(players = listOf(alice))
-    // when
     val cardsRetrieved = game.cardsOf(alice)
+    // when
     val totalCards: List<Card> = cardsRetrieved.totalCards
     // then
     assertThat(totalCards)
       .hasSize(10)
-      .matches { it.filter { it == Card.Anwesen }.size == 3 }
-      .matches { it.filter { it == Card.Kupfer }.size == 7 }
+      .matches { cards -> cards.filter { it == Card.Anwesen }.size == 3 }
+      .matches { cards -> cards.filter { it == Card.Kupfer }.size == 7 }
+  }
+  
+  @Test
+  fun `play in game, cards, total cards, combined deck and hand`() {
+    // given
+    val cardsRetrieved = game.cardsOf(alice)
+    val deck = cardsRetrieved.cardsInDeck
+    val hand = cardsRetrieved.cardsInHand
+    // when
+    val totalCards: List<Card> = cardsRetrieved.totalCards
+    // then
+    assertThat(totalCards)
+      .hasSize(10)
+      .containsAll(deck)
+      .containsAll(hand)
   }
 }
