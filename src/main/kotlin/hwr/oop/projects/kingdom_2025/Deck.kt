@@ -4,29 +4,26 @@ class Deck(
   val cards: List<Card>,
 ) : List<Card> by cards {
   
-  internal fun toMutableDeck(): MutableDeck {
-    return MutableDeck(cards.toMutableList())
-  }
-  
   fun shuffled(): Deck {
     return Deck(cards.shuffled())
   }
-}
-
-internal class MutableDeck(
-  private val cards: MutableList<Card>,
-) {
-  fun drawHand(): CardsInHand {
-    val firstFive = cards.subList(0, 5).toList()
-    (1..5).forEach { _ ->
-      cards.removeFirst()
+  
+  fun draw(numberOfCards: Int): DrawResult {
+    require(cards.size >= numberOfCards) {
+      "Cannot draw more cards than available"
     }
-    return CardsInHand(firstFive)
+    val drawnCards = cards.subList(0, numberOfCards)
+    val newDeck = Deck(cards.subList(numberOfCards, cards.size))
+    return DrawResult(newDeck, drawnCards)
   }
   
-  fun toDeck(): Deck {
-    return Deck(cards)
-  }
+}
+
+data class DrawResult(
+  val newDeck: Deck,
+  val drawnCards: List<Card>,
+) {
+
 }
 
 internal fun createStartingDeck(): Deck = Deck(startingCards().shuffled())

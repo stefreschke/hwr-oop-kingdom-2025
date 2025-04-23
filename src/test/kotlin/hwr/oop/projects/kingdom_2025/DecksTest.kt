@@ -40,22 +40,4 @@ class DecksTest : AnnotationSpec() {
     assertThat(cardOrderShuffledDeck)
       .doesNotContainSequence(cardOrderOriginalDeck)
   }
-  
-  @Test
-  fun `mutable Deck, draw hand, first 5 cards drawn, 5 left in deck`() {
-    // given
-    val originalDeck = createStartingDeck()
-    val firstFiveCards = originalDeck.cards.subList(0, 5)
-    val mutableDeck = originalDeck.toMutableDeck()
-    // when
-    val hand = mutableDeck.drawHand()
-    // then
-    val updatedDeck = mutableDeck.toDeck()
-    assertThat(updatedDeck.cards)
-      .hasSize(5)
-      .doesNotContainSequence(hand.cards)
-    assertThat(hand.cards)
-      .hasSize(5)
-      .containsExactlyElementsOf(firstFiveCards)
-  }
 }

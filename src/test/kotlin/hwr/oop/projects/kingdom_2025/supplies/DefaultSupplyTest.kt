@@ -14,7 +14,8 @@ class DefaultSupplyTest : AnnotationSpec() {
     // when
     val buyableCards = supply.buyableCards
     // then
-    Assertions.assertThat(buyableCards).contains(Card.Silver, Card.Gold, Card.Copper)
+    Assertions.assertThat(buyableCards)
+      .contains(Card.Silver, Card.Gold, Card.Copper)
   }
   
   @Test

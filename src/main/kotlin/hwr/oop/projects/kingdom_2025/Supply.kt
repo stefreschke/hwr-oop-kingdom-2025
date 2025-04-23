@@ -16,7 +16,8 @@ class Supply(
     requireCardInSupply(card)
     val currentAmountOfCards = cardCountMap[card]!!
     require(currentAmountOfCards >= numberOf) {
-      "Not enough $card in supply, requested: $numberOf, only available: $currentAmountOfCards"
+      "Not enough $card in supply, requested: $numberOf," +
+          " only available: $currentAmountOfCards"
     }
     val mutable = cardCountMap.toMutableMap()
     mutable[card] = currentAmountOfCards - numberOf
