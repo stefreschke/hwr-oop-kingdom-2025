@@ -24,7 +24,7 @@ class GameTest : AnnotationSpec() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
-    val cardsInHand = cardsRetrieved.cardsInHand
+    val cardsInHand = cardsRetrieved.hand
     // then
     assertThat(cardsInHand)
       .hasSize(5)
@@ -35,7 +35,7 @@ class GameTest : AnnotationSpec() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
-    val cardsInDeck = cardsRetrieved.cardsInDeck
+    val cardsInDeck = cardsRetrieved.deck
     // then
     assertThat(cardsInDeck)
       .hasSize(5)
@@ -58,8 +58,8 @@ class GameTest : AnnotationSpec() {
   fun `play in game, cards, total cards, combined deck and hand`() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
-    val deck = cardsRetrieved.cardsInDeck
-    val hand = cardsRetrieved.cardsInHand
+    val deck = cardsRetrieved.deck
+    val hand = cardsRetrieved.hand
     // when
     val totalCards: List<Card> = cardsRetrieved.totalCards
     // then
@@ -68,4 +68,5 @@ class GameTest : AnnotationSpec() {
       .containsAll(deck)
       .containsAll(hand)
   }
+  
 }

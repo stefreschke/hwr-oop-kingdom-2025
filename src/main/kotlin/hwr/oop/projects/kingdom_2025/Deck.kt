@@ -29,19 +29,17 @@ internal class MutableDeck(
   }
 }
 
-internal fun createStartingDeck(): Deck {
-  return Deck(
-    listOf(
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Kupfer,
-      Card.Anwesen,
-      Card.Anwesen,
-      Card.Anwesen
-    )
-  )
-}
+internal fun createStartingDeck(): Deck = Deck(startingCards().shuffled())
+
+internal fun startingCards(): List<Card> = listOf(
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Kupfer,
+  Card.Anwesen,
+  Card.Anwesen,
+  Card.Anwesen
+)

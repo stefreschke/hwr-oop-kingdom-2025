@@ -2,18 +2,43 @@ package hwr.oop.projects.kingdom_2025
 
 class Game(
   val players: List<Player>,
+  val turn: Player = players.first(),
   decks: Map<Player, Deck> = emptyMap(),
+  playerCardMap: AllPlayersCards = AllPlayersCards(emptyMap()),
 ) {
   
-  private val playerCardMap = if (decks.isEmpty()) {
-    players.associateWith { PlayerCards(createStartingDeck().shuffled()) }
+  private val playerCardMap: AllPlayersCards = if (!playerCardMap.isEmpty()) {
+    playerCardMap
+  } else if (decks.isEmpty()) {
+    val map =
+      players.associateWith { PlayerCards(createStartingDeck().shuffled()) }
+    AllPlayersCards(map)
   } else {
-    players.associateWith { player -> PlayerCards(decks[player]!!) }
+    val map =
+      players.associateWith { player -> PlayerCards(decks[player]!!) }
+    AllPlayersCards(map)
   }
   
   fun cardsOf(player: Player): PlayerCards {
     return playerCardMap[player]
       ?: throw IllegalStateException("Player $player is not part of the game")
+  }
+  
+  fun buy(card: Card): Game {
+    return copy(
+      players = players,
+      playerCardMap = playerCardMap.buy(card, turn),
+    )
+  }
+  
+  fun copy(
+    players: List<Player>,
+    playerCardMap: AllPlayersCards,
+  ): Game {
+    return Game(
+      players = players,
+      playerCardMap = playerCardMap
+    )
   }
   
 }

@@ -3,9 +3,6 @@ package hwr.oop.projects.kingdom_2025
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
-typealias K = Card.Kupfer
-typealias A = Card.Anwesen
-
 class GamesUseDecksTest : AnnotationSpec() {
   
   private val alice = Player("Alice")  // possible because player is immutable
@@ -27,8 +24,8 @@ class GamesUseDecksTest : AnnotationSpec() {
     )
     // when
     val cardsRetrieved = game.cardsOf(alice)
-    val cardsInHand = cardsRetrieved.cardsInHand
-    val cardsInDeck = cardsRetrieved.cardsInDeck
+    val cardsInHand = cardsRetrieved.hand
+    val cardsInDeck = cardsRetrieved.deck
     // then
     assertThat(cardsInHand)
       .hasSize(5)
