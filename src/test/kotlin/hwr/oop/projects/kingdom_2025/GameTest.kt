@@ -46,7 +46,7 @@ class GameTest : AnnotationSpec() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
-    val totalCards: List<Card> = cardsRetrieved.totalCards
+    val totalCards = cardsRetrieved.totalCards
     // then
     assertThat(totalCards)
       .hasSize(10)
@@ -61,7 +61,7 @@ class GameTest : AnnotationSpec() {
     val deck = cardsRetrieved.deck
     val hand = cardsRetrieved.hand
     // when
-    val totalCards: List<Card> = cardsRetrieved.totalCards
+    val totalCards = cardsRetrieved.totalCards
     // then
     assertThat(totalCards)
       .hasSize(10)
