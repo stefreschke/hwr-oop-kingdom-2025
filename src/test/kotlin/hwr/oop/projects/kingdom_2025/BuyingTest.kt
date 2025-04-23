@@ -4,8 +4,8 @@ import assertAll
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
-typealias K = Card.Kupfer
-typealias A = Card.Anwesen
+typealias K = Card.Copper
+typealias A = Card.Estate
 
 class BuyingTest : AnnotationSpec() {
   
@@ -25,9 +25,9 @@ class BuyingTest : AnnotationSpec() {
   )
   
   @Test
-  fun `buy Silber, Silber not in hand, not in deck, but in total cards`() {
+  fun `buy silver, silver not in hand, not in deck, but in total cards`() {
     // given
-    val updatedGame = game.buy(Card.Silber)
+    val updatedGame = game.buy(Card.Silver)
     // when
     val cardsRetrieved = updatedGame.cardsOf(player)
     // then
@@ -35,16 +35,16 @@ class BuyingTest : AnnotationSpec() {
     val hand = cardsRetrieved.hand
     val totalCards = cardsRetrieved.totalCards
     assertAll {
-      assertThat(deck).doesNotContain(Card.Silber)
-      assertThat(hand).doesNotContain(Card.Silber)
-      assertThat(totalCards).contains(Card.Silber)
+      assertThat(deck).doesNotContain(Card.Silver)
+      assertThat(hand).doesNotContain(Card.Silver)
+      assertThat(totalCards).contains(Card.Silver)
     }
   }
   
   @Test
-  fun `buy Silber, hand discarded, new hand dealt`() {
+  fun `buy silver, hand discarded, new hand dealt`() {
     // given
-    val updatedGame = game.buy(Card.Silber)
+    val updatedGame = game.buy(Card.Silver)
     // when
     val cardsRetrieved = updatedGame.cardsOf(player)
     // then

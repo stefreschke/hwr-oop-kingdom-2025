@@ -9,23 +9,23 @@ sealed class Card(
     purchasePower = 3
   )
   
-  data object Silber : Card(
+  data object Silver : Card(
     purchasePower = 2
   )
   
-  data object Kupfer : Card(
+  data object Copper : Card(
     purchasePower = 1
   )
   
-  data object Anwesen : Card(
+  data object Estate : Card(
     points = 1
   )
   
-  data object Herzogtum : Card(
+  data object Duchy : Card(
     points = 3
   )
   
-  data object Provinz : Card(
+  data object Province : Card(
     points = 6
   )
   

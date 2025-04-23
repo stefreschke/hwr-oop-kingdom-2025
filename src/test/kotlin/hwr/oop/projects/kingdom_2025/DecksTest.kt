@@ -17,15 +17,15 @@ class DecksTest : AnnotationSpec() {
   }
   
   @Test
-  fun `starting deck, contains 3 anwesen, 7 kupfer`() {
+  fun `starting deck, contains 3 estate, 7 copper`() {
     // given
     val deck = createStartingDeck()
     // when
     val cardsInDeck = deck.cards
     // then
     assertThat(cardsInDeck)
-      .matches { cards -> cards.filter { it == Card.Anwesen }.size == 3 }
-      .matches { cards -> cards.filter { it == Card.Kupfer }.size == 7 }
+      .matches { cards -> cards.filter { it == Card.Estate }.size == 3 }
+      .matches { cards -> cards.filter { it == Card.Copper }.size == 7 }
   }
   
   @Test

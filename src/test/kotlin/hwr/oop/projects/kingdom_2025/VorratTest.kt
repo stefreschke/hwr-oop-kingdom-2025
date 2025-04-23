@@ -11,6 +11,6 @@ class VorratTest : AnnotationSpec() {
     // when
     val buyableCards: List<Card> = vorrat.buyableCards
     // then
-    assertThat(buyableCards).contains(Card.Silber, Card.Gold, Card.Kupfer)
+    assertThat(buyableCards).contains(Card.Silver, Card.Gold, Card.Copper)
   }
 }

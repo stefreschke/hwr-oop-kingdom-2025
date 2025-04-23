@@ -6,23 +6,23 @@ import org.assertj.core.api.Assertions.assertThat
 class MoneyCardsTest : AnnotationSpec() {
   
   @Test
-  fun `kupfer, is money with purchase power 1`() {
+  fun `copper, is money with purchase power 1`() {
     // given
-    val kupfer = Card.Kupfer
+    val copper = Card.Copper
     // when
-    val purchasePowerOfKupfer = kupfer.purchasePower
+    val purchasePowerOfCopper = copper.purchasePower
     // then
-    assertThat(purchasePowerOfKupfer).isEqualTo(1)
+    assertThat(purchasePowerOfCopper).isEqualTo(1)
   }
   
   @Test
-  fun `silber, is money with purchase power 2`() {
+  fun `silver, is money with purchase power 2`() {
     // given
-    val silber = Card.Silber
+    val silver = Card.Silver
     // when
-    val purchasePowerOfKupfer = silber.purchasePower
+    val purchasePowerOfCopper = silver.purchasePower
     // then
-    assertThat(purchasePowerOfKupfer).isEqualTo(2)
+    assertThat(purchasePowerOfCopper).isEqualTo(2)
   }
   
   @Test
@@ -30,9 +30,9 @@ class MoneyCardsTest : AnnotationSpec() {
     // given
     val gold = Card.Gold
     // when
-    val purchasePowerOfKupfer = gold.purchasePower
+    val purchasePowerOfCopper = gold.purchasePower
     // then
-    assertThat(purchasePowerOfKupfer).isEqualTo(3)
+    assertThat(purchasePowerOfCopper).isEqualTo(3)
   }
   
 }

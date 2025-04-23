@@ -5,31 +5,31 @@ import org.assertj.core.api.Assertions.assertThat
 
 class PointCardsTest : AnnotationSpec() {
   @Test
-  fun `anwesen, gives single point`() {
+  fun `estate, gives single point`() {
     // given
-    val anwesen = Card.Anwesen
+    val estate = Card.Estate
     // when
-    val retrievedPoints = anwesen.points
+    val retrievedPoints = estate.points
     // then
     assertThat(retrievedPoints).isEqualTo(1)
   }
   
   @Test
-  fun `herzogtum, gives 3 points`() {
+  fun `duchy, gives 3 points`() {
     // given
-    val herzogtum = Card.Herzogtum
+    val duchy = Card.Duchy
     // when
-    val retrievedPoints = herzogtum.points
+    val retrievedPoints = duchy.points
     // then
     assertThat(retrievedPoints).isEqualTo(3)
   }
   
   @Test
-  fun `provinz, gives 6 points`() {
+  fun `province, gives 6 points`() {
     // given
-    val provinz = Card.Provinz
+    val province = Card.Province
     // when
-    val retrievedPoints = provinz.points
+    val retrievedPoints = province.points
     // then
     assertThat(retrievedPoints).isEqualTo(6)
   }

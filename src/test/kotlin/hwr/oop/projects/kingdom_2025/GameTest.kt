@@ -42,7 +42,7 @@ class GameTest : AnnotationSpec() {
   }
   
   @Test
-  fun `play in game, cards, total cards, 3 anwesen, 7 kupfer`() {
+  fun `play in game, cards, total cards, 3 estate, 7 copper`() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
@@ -50,8 +50,8 @@ class GameTest : AnnotationSpec() {
     // then
     assertThat(totalCards)
       .hasSize(10)
-      .matches { cards -> cards.filter { it == Card.Anwesen }.size == 3 }
-      .matches { cards -> cards.filter { it == Card.Kupfer }.size == 7 }
+      .matches { cards -> cards.filter { it == Card.Estate }.size == 3 }
+      .matches { cards -> cards.filter { it == Card.Copper }.size == 7 }
   }
   
   @Test
