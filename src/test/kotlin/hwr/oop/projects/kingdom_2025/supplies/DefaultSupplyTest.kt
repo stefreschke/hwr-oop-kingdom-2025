@@ -4,7 +4,7 @@ import assertAll
 import hwr.oop.projects.kingdom_2025.Card
 import hwr.oop.projects.kingdom_2025.Supply
 import io.kotest.core.spec.style.AnnotationSpec
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 
 class DefaultSupplyTest : AnnotationSpec() {
   @Test
@@ -14,7 +14,7 @@ class DefaultSupplyTest : AnnotationSpec() {
     // when
     val buyableCards = supply.buyableCards
     // then
-    Assertions.assertThat(buyableCards)
+    assertThat(buyableCards)
       .contains(Card.Silver, Card.Gold, Card.Copper)
   }
   
@@ -24,9 +24,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableCoppers: Int = supply.numberOfAvailable(Card.Copper)
+    val availableCoppers = supply.numberOfAvailable(Card.Copper)
+    val pileEmpty = supply.pileIsEmpty(Card.Copper)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Copper)
       assertThat(availableCoppers).isEqualTo(60)
     }
@@ -38,9 +40,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableSilvers: Int = supply.numberOfAvailable(Card.Silver)
+    val availableSilvers = supply.numberOfAvailable(Card.Silver)
+    val pileEmpty = supply.pileIsEmpty(Card.Silver)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Silver)
       assertThat(availableSilvers).isEqualTo(40)
     }
@@ -52,9 +56,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableGold: Int = supply.numberOfAvailable(Card.Gold)
+    val availableGold = supply.numberOfAvailable(Card.Gold)
+    val pileEmpty = supply.pileIsEmpty(Card.Gold)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Gold)
       assertThat(availableGold).isEqualTo(30)
     }
@@ -66,9 +72,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableEstates: Int = supply.numberOfAvailable(Card.Estate)
+    val availableEstates = supply.numberOfAvailable(Card.Estate)
+    val pileEmpty = supply.pileIsEmpty(Card.Estate)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Estate)
       assertThat(availableEstates).isEqualTo(24)
     }
@@ -80,9 +88,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableDuchys: Int = supply.numberOfAvailable(Card.Duchy)
+    val availableDuchys = supply.numberOfAvailable(Card.Duchy)
+    val pileEmpty = supply.pileIsEmpty(Card.Duchy)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Duchy)
       assertThat(availableDuchys).isEqualTo(12)
     }
@@ -94,9 +104,11 @@ class DefaultSupplyTest : AnnotationSpec() {
     val supply = Supply()
     // when
     val buyableCards = supply.buyableCards
-    val availableProvinces: Int = supply.numberOfAvailable(Card.Province)
+    val availableProvinces = supply.numberOfAvailable(Card.Province)
+    val pileEmpty = supply.pileIsEmpty(Card.Province)
     // then
     assertAll {
+      assertThat(pileEmpty).isFalse
       assertThat(buyableCards).contains(Card.Province)
       assertThat(availableProvinces).isEqualTo(12)
     }

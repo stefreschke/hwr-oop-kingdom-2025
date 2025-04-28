@@ -22,9 +22,7 @@ class Deck(
 data class DrawResult(
   val newDeck: Deck,
   val drawnCards: List<Card>,
-) {
-
-}
+)
 
 internal fun createStartingDeck(): Deck = Deck(startingCards().shuffled())
 

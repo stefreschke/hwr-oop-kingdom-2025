@@ -2,6 +2,7 @@ package hwr.oop.projects.kingdom_2025
 
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 
 class DecksTest : AnnotationSpec() {
   
@@ -39,5 +40,20 @@ class DecksTest : AnnotationSpec() {
     val cardOrderShuffledDeck = shuffledDeck.cards
     assertThat(cardOrderShuffledDeck)
       .doesNotContainSequence(cardOrderOriginalDeck)
+  }
+  
+  @Test
+  fun `exception, starting deck, 10 cards, draw 11, illegal argument`() {
+    // given
+    val deck = createStartingDeck()
+    assertThatThrownBy {
+      // when
+      deck.draw(11)
+    }.hasMessageContaining(
+      // then
+      "Cannot draw more cards than available",
+      "requested: 11",
+      "only available: 10"
+    )
   }
 }

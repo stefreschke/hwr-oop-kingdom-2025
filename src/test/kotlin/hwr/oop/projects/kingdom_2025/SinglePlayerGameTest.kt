@@ -2,8 +2,9 @@ package hwr.oop.projects.kingdom_2025
 
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 
-class GameTest : AnnotationSpec() {
+class SinglePlayerGameTest : AnnotationSpec() {
   
   private val alice = Player("Alice")  // possible because player is immutable
   private val game =
@@ -17,6 +18,19 @@ class GameTest : AnnotationSpec() {
     assertThat(retrievedPlayers)
       .hasSize(1)
       .contains(alice)
+  }
+  
+  @Test
+  fun `exception, game with single player, different player, illegal argument`() {
+    // given
+    val bob = Player("Bob")
+    assertThatThrownBy {
+      // when
+      game.cardsOf(bob)
+    }.hasMessageContaining(
+      // then
+      "Player $bob is not part of the game"
+    )
   }
   
   @Test

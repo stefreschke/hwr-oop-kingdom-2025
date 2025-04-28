@@ -8,13 +8,12 @@ class Supply(
   val numberOfEmptyPiles = emptyPiles.size
   
   fun numberOfAvailable(card: Card): Int {
-    requireCardInSupply(card)
-    return cardCountMap[card]!!
+    return cardCountMap[card] ?: invalidCard(card)
   }
   
   fun remove(numberOf: Int, card: Card): Supply {
-    requireCardInSupply(card)
-    val currentAmountOfCards = cardCountMap[card]!!
+    val currentAmountOfCards =
+      cardCountMap[card] ?: invalidCard(card)
     require(currentAmountOfCards >= numberOf) {
       "Not enough $card in supply, requested: $numberOf," +
           " only available: $currentAmountOfCards"
@@ -24,14 +23,13 @@ class Supply(
     return Supply(mutable.toMap())
   }
   
-  private fun requireCardInSupply(card: Card) {
-    require(card in cardCountMap) { "Card $card is not in supply" }
+  fun pileIsEmpty(card: Card): Boolean {
+    val sizeOfPile = cardCountMap[card] ?: invalidCard(card)
+    return sizeOfPile == 0
   }
   
-  fun pileIsEmpty(card: Card): Boolean {
-    requireCardInSupply(card)
-    return cardCountMap[card] == 0
-  }
+  private fun invalidCard(card: Card): Nothing =
+    throw IllegalArgumentException("Card $card is not in supply")
   
 }
 

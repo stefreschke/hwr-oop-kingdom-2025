@@ -6,7 +6,7 @@ class AllPlayersCards(
   
   fun cardsOf(player: Player): PlayerCards {
     return map[player]
-      ?: throw IllegalStateException("Player $player is not part of the game")
+      ?: throw IllegalArgumentException("Player $player is not part of the game")
   }
   
   fun buy(card: Card, player: Player): AllPlayersCards {

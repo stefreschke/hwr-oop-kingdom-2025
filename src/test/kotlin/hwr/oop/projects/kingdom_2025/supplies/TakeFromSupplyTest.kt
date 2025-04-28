@@ -49,4 +49,43 @@ class TakeFromSupplyTest : AnnotationSpec() {
       assertThat(updatedSupply.numberOfEmptyPiles).isEqualTo(1)
     }
   }
+  
+  @Test
+  fun `exception, take card not in supply, illegal argument`() {
+    // given
+    val supply = Supply()
+    assertThatThrownBy {
+      // when
+      supply.remove(1, Card.Thief)
+    }.hasMessageContaining(
+      // then
+      "Card Thief is not in supply"
+    )
+  }
+  
+  @Test
+  fun `exception, check emptiness of pile not in supply, illegal argument`() {
+    // given
+    val supply = Supply()
+    assertThatThrownBy {
+      // when
+      supply.pileIsEmpty(Card.Thief)
+    }.hasMessageContaining(
+      // then
+      "Card Thief is not in supply"
+    )
+  }
+  
+  @Test
+  fun `exception, check if card not in supply buyable, illegal argument`() {
+    // given
+    val supply = Supply()
+    assertThatThrownBy {
+      // when
+      supply.numberOfAvailable(Card.Thief)
+    }.hasMessageContaining(
+      // then
+      "Card Thief is not in supply"
+    )
+  }
 }

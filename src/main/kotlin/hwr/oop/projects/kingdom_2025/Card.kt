@@ -29,4 +29,9 @@ sealed class Card(
     points = 6
   )
   
+  data object Thief : Card(
+    purchasePower = 0,
+    points = 0,
+  )
+  
 }
