@@ -17,6 +17,10 @@ sealed class Card(
     purchasePower = 1
   )
   
+  object Curse : Card(
+    points = -1,
+  )
+  
   data object Estate : Card(
     points = 1
   )
@@ -33,5 +37,25 @@ sealed class Card(
     purchasePower = 0,
     points = 0,
   )
+  
+  data object DummyCard1 : Card()
+  
+  data object DummyCard2 : Card()
+  
+  data object DummyCard3 : Card()
+  
+  data object DummyCard4 : Card()
+  
+  data object DummyCard5 : Card()
+  
+  data object DummyCard6 : Card()
+  
+  data object DummyCard7 : Card()
+  
+  data object DummyCard8 : Card()
+  
+  data object DummyCard9 : Card()
+  
+  data object DummyCard10 : Card()
   
 }

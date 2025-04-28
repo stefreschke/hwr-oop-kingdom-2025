@@ -34,12 +34,24 @@ class Supply(
 }
 
 private val defaultSupplyCardCountMap = mapOf(
-  // money
+  // treasure
   Card.Gold to 30,
   Card.Silver to 40,
   Card.Copper to 60,
-  // points
+  // victory
   Card.Province to 12,
   Card.Duchy to 12,
-  Card.Estate to 24
+  Card.Estate to 24,
+  Card.Curse to 60,
+  // action
+  Card.DummyCard1 to 10,
+  Card.DummyCard2 to 10,
+  Card.DummyCard3 to 10,
+  Card.DummyCard4 to 10,
+  Card.DummyCard5 to 10,
+  Card.DummyCard6 to 10,
+  Card.DummyCard7 to 10,
+  Card.DummyCard8 to 10,
+  Card.DummyCard9 to 10,
+  Card.DummyCard10 to 10,
 )

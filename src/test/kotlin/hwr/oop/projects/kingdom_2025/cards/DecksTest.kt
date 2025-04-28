@@ -1,6 +1,9 @@
-package hwr.oop.projects.kingdom_2025
+package hwr.oop.projects.kingdom_2025.cards
 
+import hwr.oop.projects.kingdom_2025.Card
+import hwr.oop.projects.kingdom_2025.createStartingDeck
 import io.kotest.core.spec.style.AnnotationSpec
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 
@@ -13,8 +16,7 @@ class DecksTest : AnnotationSpec() {
     // when
     val cardsInDeck = deck.cards
     // then
-    assertThat(cardsInDeck)
-      .hasSize(10)
+    assertThat(cardsInDeck).hasSize(10)
   }
   
   @Test

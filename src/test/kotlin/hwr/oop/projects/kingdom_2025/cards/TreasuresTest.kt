@@ -1,9 +1,10 @@
-package hwr.oop.projects.kingdom_2025
+package hwr.oop.projects.kingdom_2025.cards
 
+import hwr.oop.projects.kingdom_2025.Card
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
-class MoneyCardsTest : AnnotationSpec() {
+class TreasuresTest : AnnotationSpec() {
   
   @Test
   fun `copper, is money with purchase power 1`() {

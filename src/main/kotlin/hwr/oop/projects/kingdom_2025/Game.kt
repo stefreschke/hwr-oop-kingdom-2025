@@ -19,6 +19,9 @@ class Game(
     AllPlayersCards(map)
   }
   
+  val supply: Supply = Supply()
+  
+  
   fun cardsOf(player: Player): PlayerCards {
     return playerCardMap.cardsOf(player)
   }
@@ -38,6 +41,18 @@ class Game(
       players = players,
       playerCardMap = playerCardMap
     )
+  }
+  
+  fun buysAvailable(): Int {
+    return 1
+  }
+  
+  fun actionsAvailable(): Int {
+    return 1
+  }
+  
+  fun purchasePower(): Int {
+    return cardsOf(turn).hand.purchasePower()
   }
   
 }
