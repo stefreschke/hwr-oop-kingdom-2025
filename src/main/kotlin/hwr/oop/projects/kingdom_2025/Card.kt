@@ -3,14 +3,17 @@ package hwr.oop.projects.kingdom_2025
 sealed class Card(
   val purchasePower: Int = 0,
   val points: Int = 0,
+  val cost: Int = 0,
 ) {
   
   data object Gold : Card(
-    purchasePower = 3
+    purchasePower = 3,
+    cost = 6
   )
   
   data object Silver : Card(
-    purchasePower = 2
+    purchasePower = 2,
+    cost = 3
   )
   
   data object Copper : Card(
@@ -22,15 +25,18 @@ sealed class Card(
   )
   
   data object Estate : Card(
-    points = 1
+    points = 1,
+    cost = 2
   )
   
   data object Duchy : Card(
-    points = 3
+    points = 3,
+    cost = 5
   )
   
   data object Province : Card(
-    points = 6
+    points = 6,
+    cost = 8
   )
   
   data object Thief : Card(

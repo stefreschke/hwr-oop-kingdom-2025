@@ -1,13 +1,17 @@
-package hwr.oop.projects.kingdom_2025
+package hwr.oop.projects.kingdom_2025.buying
 
 import assertAll
+import hwr.oop.projects.kingdom_2025.Card.Silver
+import hwr.oop.projects.kingdom_2025.Deck
+import hwr.oop.projects.kingdom_2025.Game
+import hwr.oop.projects.kingdom_2025.Player
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
-typealias K = Card.Copper
-typealias A = Card.Estate
+typealias K = hwr.oop.projects.kingdom_2025.Card.Copper
+typealias A = hwr.oop.projects.kingdom_2025.Card.Estate
 
-class BuyingTest : AnnotationSpec() {
+class BuyingSilverSufficientMoneyTest : AnnotationSpec() {
   
   private val alice = Player("Alice")
   private val game = Game(
@@ -27,7 +31,7 @@ class BuyingTest : AnnotationSpec() {
   @Test
   fun `buy silver, silver not in hand, not in deck, but in total cards`() {
     // given
-    val updatedGame = game.buy(Card.Silver)
+    val updatedGame = game.buy(Silver)
     // when
     val cardsRetrieved = updatedGame.cardsOf(alice)
     // then
@@ -36,17 +40,17 @@ class BuyingTest : AnnotationSpec() {
     val playedCards = cardsRetrieved.cardsPlayed
     val totalCards = cardsRetrieved.totalCards
     assertAll {
-      assertThat(deck.cards).doesNotContain(Card.Silver)
-      assertThat(hand).doesNotContain(Card.Silver)
-      assertThat(playedCards).contains(Card.Silver)
-      assertThat(totalCards).contains(Card.Silver)
+      assertThat(deck.cards).doesNotContain(Silver)
+      assertThat(hand).doesNotContain(Silver)
+      assertThat(playedCards).contains(Silver)
+      assertThat(totalCards).contains(Silver)
     }
   }
   
   @Test
   fun `buy silver, hand discarded, new hand dealt`() {
     // given
-    val updatedGame = game.buy(Card.Silver)
+    val updatedGame = game.buy(Silver)
     // when
     val cardsRetrieved = updatedGame.cardsOf(alice)
     // then
@@ -85,16 +89,16 @@ class BuyingTest : AnnotationSpec() {
       )
     )
     // when
-    val afterFirstSilverBought = game.buy(Card.Silver)
-    val afterSecondSilverBought = afterFirstSilverBought.buy(Card.Silver)
+    val afterFirstSilverBought = game.buy(Silver)
+    val afterSecondSilverBought = afterFirstSilverBought.buy(Silver)
     // then
     val cardsOfAlice = afterSecondSilverBought.cardsOf(alice)
     val cardsOfAliceTotal = cardsOfAlice.totalCards
     assertThat(cardsOfAliceTotal)
       .hasSize(12)
-      .matches { cards -> cards.filter { it == Card.Silver }.size == 2 }
-      .matches { cards -> cards.filter { it == Card.Copper }.size == 6 }
-      .matches { cards -> cards.filter { it == Card.Estate }.size == 4 }
+      .matches { cards -> cards.filter { it == Silver }.size == 2 }
+      .matches { cards -> cards.filter { it == hwr.oop.projects.kingdom_2025.Card.Copper }.size == 6 }
+      .matches { cards -> cards.filter { it == hwr.oop.projects.kingdom_2025.Card.Estate }.size == 4 }
   }
   
 }
