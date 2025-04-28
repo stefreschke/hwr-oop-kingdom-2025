@@ -36,7 +36,7 @@ class BuyingTest : AnnotationSpec() {
     val playedCards = cardsRetrieved.cardsPlayed
     val totalCards = cardsRetrieved.totalCards
     assertAll {
-      assertThat(deck).doesNotContain(Card.Silver)
+      assertThat(deck.cards).doesNotContain(Card.Silver)
       assertThat(hand).doesNotContain(Card.Silver)
       assertThat(playedCards).contains(Card.Silver)
       assertThat(totalCards).contains(Card.Silver)

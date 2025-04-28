@@ -2,7 +2,11 @@ package hwr.oop.projects.kingdom_2025
 
 class Deck(
   val cards: List<Card>,
-) : List<Card> by cards {
+) {
+  
+  fun remainingCards(): Int {
+    return cards.size
+  }
   
   fun shuffled(): Deck {
     return Deck(cards.shuffled())

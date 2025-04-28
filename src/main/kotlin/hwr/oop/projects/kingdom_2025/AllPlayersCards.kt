@@ -2,11 +2,14 @@ package hwr.oop.projects.kingdom_2025
 
 class AllPlayersCards(
   val map: Map<Player, PlayerCards> = emptyMap(),
-) : Map<Player, PlayerCards> by map {
+) {
   
   fun cardsOf(player: Player): PlayerCards {
-    return map[player]
-      ?: throw IllegalArgumentException("Player $player is not part of the game")
+    return map[player] ?: invalidPlayer(player)
+  }
+  
+  fun isEmpty(): Boolean {
+    return map.isEmpty()
   }
   
   fun buy(card: Card, player: Player): AllPlayersCards {
@@ -18,4 +21,8 @@ class AllPlayersCards(
   }
   
   fun copy(map: Map<Player, PlayerCards>) = AllPlayersCards(map)
+  
+  private fun invalidPlayer(player: Player): Nothing {
+    throw IllegalArgumentException("Player $player is not part of the game")
+  }
 }

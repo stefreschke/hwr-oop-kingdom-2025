@@ -24,7 +24,7 @@ class GamesUseDecksTest : AnnotationSpec() {
     // then
     assertAll {
       assertThat(cardsRetrieved.hand).containsExactlyElementsOf(firstHand)
-      assertThat(cardsRetrieved.deck).containsExactlyElementsOf(secondHand)
+      assertThat(cardsRetrieved.deck.cards).containsExactlyElementsOf(secondHand)
     }
   }
   

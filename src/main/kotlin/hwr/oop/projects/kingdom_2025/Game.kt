@@ -20,8 +20,7 @@ class Game(
   }
   
   fun cardsOf(player: Player): PlayerCards {
-    return playerCardMap[player]
-      ?: throw IllegalStateException("Player $player is not part of the game")
+    return playerCardMap.cardsOf(player)
   }
   
   fun buy(card: Card): Game {

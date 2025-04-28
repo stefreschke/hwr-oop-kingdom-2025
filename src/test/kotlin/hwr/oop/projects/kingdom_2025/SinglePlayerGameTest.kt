@@ -38,9 +38,9 @@ class SinglePlayerGameTest : AnnotationSpec() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
-    val cardsInHand = cardsRetrieved.hand
+    val hand = cardsRetrieved.hand
     // then
-    assertThat(cardsInHand)
+    assertThat(hand)
       .hasSize(5)
   }
   
@@ -49,9 +49,9 @@ class SinglePlayerGameTest : AnnotationSpec() {
     // given
     val cardsRetrieved = game.cardsOf(alice)
     // when
-    val cardsInDeck = cardsRetrieved.deck
+    val deck = cardsRetrieved.deck
     // then
-    assertThat(cardsInDeck)
+    assertThat(deck.cards)
       .hasSize(5)
   }
   
@@ -79,7 +79,7 @@ class SinglePlayerGameTest : AnnotationSpec() {
     // then
     assertThat(totalCards)
       .hasSize(10)
-      .containsAll(deck)
+      .containsAll(deck.cards)
       .containsAll(hand)
   }
   
