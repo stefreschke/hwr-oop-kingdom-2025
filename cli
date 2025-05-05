@@ -1,3 +1,0 @@
-#!/bin/bash
-
-java -jar target/project-0.1.0-SNAPSHOT-jar-with-dependencies.jar "$@"

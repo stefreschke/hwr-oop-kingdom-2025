@@ -4,10 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>hwr.oop.projects</groupId>
+  <groupId>hwr.oop.projects.kingdom</groupId>
+  <artifactId>parent</artifactId>
 
-  <artifactId>kingdom</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
+  <modules>
+    <module>cli</module>
+    <module>core</module>
+    <module>fs-persistence</module>
+  </modules>
   <version>0.1.0-SNAPSHOT</version>
 
   <name>kingdom</name>
