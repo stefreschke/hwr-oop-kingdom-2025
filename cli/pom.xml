@@ -11,24 +11,22 @@
   <artifactId>cli</artifactId>
 
   <properties>
-    <clikt.version>5.0.3</clikt.version>
+    <!-- internal -->
+    <core.version>0.1.0-SNAPSHOT</core.version>
+    <fs-persistence.version>0.1.0-SNAPSHOT</fs-persistence.version>
+    <!-- external -->
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>hwr.oop.projects.kingdom</groupId>
       <artifactId>core</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
+      <version>${core.version}</version>
     </dependency>
     <dependency>
       <groupId>hwr.oop.projects.kingdom</groupId>
       <artifactId>fs-persistence</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.ajalt.clikt</groupId>
-      <artifactId>clikt-jvm</artifactId>
-      <version>${clikt.version}</version>
+      <version>${fs-persistence.version}</version>
     </dependency>
   </dependencies>
 </project>

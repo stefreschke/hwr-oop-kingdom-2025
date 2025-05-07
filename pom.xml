@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>cli</module>
+    <module>cli-with-clikt</module>
     <module>core</module>
     <module>fs-persistence</module>
   </modules>
