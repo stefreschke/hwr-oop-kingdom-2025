@@ -7,6 +7,18 @@ class Supply(
   val emptyPiles = cardCountMap.filter { it.value == 0 }.keys
   val numberOfEmptyPiles = emptyPiles.size
   
+  companion object {
+    fun createDefaultSupplyAdding(map: Map<Card, Int>): Supply {
+      val mutable = defaultSupplyCardCountMap.toMutableMap()
+      map.forEach { (card, count) ->
+        mutable[card] = (mutable[card] ?: 0) + count
+      }
+      val immutableMap = mutable.toMap()
+      
+      return Supply(immutableMap)
+    }
+  }
+  
   fun numberOfAvailable(card: Card): Int {
     return cardCountMap[card] ?: invalidCard(card)
   }

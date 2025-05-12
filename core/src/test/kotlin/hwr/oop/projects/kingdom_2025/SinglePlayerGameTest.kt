@@ -9,7 +9,10 @@ class SinglePlayerGameTest : AnnotationSpec() {
   
   private val alice = Player("Alice")  // possible because player is immutable
   private val game =
-    Game(players = listOf(alice))  // possible because game is immutable
+    Game(
+      id = GameId("1234"),
+      players = listOf(alice)
+    )  // possible because game is immutable
   
   @Test
   fun `game with single player, game has correct player`() {
@@ -133,6 +136,14 @@ class SinglePlayerGameTest : AnnotationSpec() {
       .matches { it.numberOfAvailable(Card.Province) == 12 }
       .matches { it.numberOfAvailable(Card.Duchy) == 12 }
       .matches { it.buyableCards.size == 17 }  // 10 action cards
+  }
+  
+  @Test
+  fun `game has id`() {
+    // when
+    val gameId = game.id
+    // then
+    assertThat(gameId.value).isEqualTo("1234")
   }
   
 }

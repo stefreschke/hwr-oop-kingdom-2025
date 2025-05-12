@@ -5,6 +5,8 @@ class Game(
   val turn: Player = players.first(),
   decks: Map<Player, Deck> = emptyMap(),
   playerCardMap: AllPlayersCards = AllPlayersCards(emptyMap()),
+  val supply: Supply = Supply(),
+  val id: GameId = GameId.random(),
 ) {
   
   private val playerCardMap: AllPlayersCards = if (!playerCardMap.isEmpty()) {
@@ -18,8 +20,6 @@ class Game(
       players.associateWith { player -> PlayerCards(decks[player]!!) }
     AllPlayersCards(map)
   }
-  
-  val supply: Supply = Supply()
   
   
   fun cardsOf(player: Player): PlayerCards {

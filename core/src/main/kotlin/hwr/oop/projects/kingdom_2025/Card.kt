@@ -42,6 +42,7 @@ sealed class Card(
   data object Thief : Card(
     purchasePower = 0,
     points = 0,
+    cost = 4,
   )
   
   data object DummyCard1 : Card()
