@@ -1,3 +1,5 @@
+package hwr.oop.projects.kingdom_2025
+
 import org.assertj.core.api.SoftAssertions
 
 fun assertAll(assertions: SoftAssertions.() -> Unit) {

@@ -14,7 +14,6 @@ class Supply(
         mutable[card] = (mutable[card] ?: 0) + count
       }
       val immutableMap = mutable.toMap()
-      
       return Supply(immutableMap)
     }
   }

@@ -1,21 +1,21 @@
 package hwr.oop.projects.kingdom_2025.buying
 
 import hwr.oop.projects.kingdom_2025.*
+import hwr.oop.projects.kingdom_2025.Deck
+import hwr.oop.projects.kingdom_2025.Hand
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThatThrownBy
 
 class InsufficientMoneyTest : AnnotationSpec() {
   
   private val alice = Player("Alice")
-  private val handOfAlice = HandCards(listOf(A, A, A, A, K))
-  private val deckOfAlice = Deck(listOf(K, K, K, K, A))
   private val aliceCards = PlayerCards(
-    hand = handOfAlice,
-    remainingDeck = deckOfAlice,
+    hand = Hand(listOf(E, E, E, E, C)),
+    deck = Deck(listOf(C, C, C, C, E)),
   )
   private val game = Game(
-    players = listOf<Player>(alice),
-    playerCardMap = AllPlayersCards(mapOf<Player, PlayerCards>(alice to aliceCards)),
+    players = listOf(alice),
+    playerCardMap = AllPlayersCards(mapOf(alice to aliceCards)),
     supply = Supply.createDefaultSupplyAdding(mapOf(Card.Thief to 3))
   )
   

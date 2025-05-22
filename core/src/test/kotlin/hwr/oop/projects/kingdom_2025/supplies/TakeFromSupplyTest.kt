@@ -1,6 +1,6 @@
 package hwr.oop.projects.kingdom_2025.supplies
 
-import assertAll
+import hwr.oop.projects.kingdom_2025.assertAll
 import hwr.oop.projects.kingdom_2025.Card
 import hwr.oop.projects.kingdom_2025.Supply
 import io.kotest.core.spec.style.AnnotationSpec

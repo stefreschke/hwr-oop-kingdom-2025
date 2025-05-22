@@ -1,74 +1,85 @@
 package hwr.oop.projects.kingdom_2025
 
 class PlayerCards(
-  remainingDeck: Deck,
-  cardsPreviouslyPlayed: List<Card> = emptyList(),
-  hand: HandCards? = null,
+  val hand: Hand,
+  val deck: Deck,
+  val cardsPlayed: List<Card> = emptyList(),
 ) {
-  val deck: Deck
-  val hand: HandCards
-  val cardsPlayed: List<Card>
+  val totalCards = hand.asList() + deck.cards + cardsPlayed
   
-  init {
-    // TODO Refactor this!
-    if (hand != null) {
-      this.hand = hand
-      this.deck = remainingDeck
-      this.cardsPlayed = cardsPreviouslyPlayed
-    } else {
-      if (remainingDeck.remainingCards() >= 5) {
-        val resultOfDraw = remainingDeck.draw(5)
-        this.hand = resultOfDraw.drawnCards.asHand()
-        this.deck = resultOfDraw.newDeck
-        this.cardsPlayed = cardsPreviouslyPlayed
-      } else {
-        val resultOfFirstDraw =
-          remainingDeck.draw(remainingDeck.remainingCards())
-        val partialHand = resultOfFirstDraw.drawnCards
-        val resultOfSecondDraw =
-          Deck(cardsPreviouslyPlayed).shuffled().draw(5 - partialHand.size)
-        val totalDrawnCards = partialHand + resultOfSecondDraw.drawnCards
-        val newDeck = resultOfSecondDraw.newDeck
-        this.hand = totalDrawnCards.asHand()
-        this.deck = newDeck
-        this.cardsPlayed = emptyList<Card>()
-      }
-    }
-  }
-  
-  val totalCards = this.hand.asList() + deck.cards + cardsPlayed
+  fun noBuy(): PlayerCards = nextPlayerCards()
   
   fun buy(card: Card): PlayerCards {
     val cardToExpensive = card.cost > hand.purchasePower()
     if (cardToExpensive) {
       throw CardToExpensiveException(card, hand)
     }
-    return PlayerCards(
-      remainingDeck = deck,
-      cardsPreviouslyPlayed = hand.asList() + cardsPlayed + card
+    return drawingNewHand(
+      deck = deck,
+      played = hand.asList() + cardsPlayed + card
     )
   }
   
-  private fun List<Card>.asHand() = HandCards(this)
-}
-
-class CardToExpensiveException(
-  cardToBeBought: Card,
-  hand: HandCards,
-) : Exception(
-  "Not enough purchase power to buy $cardToBeBought," +
-      " expected at least ${cardToBeBought.cost}," +
-      " got ${hand.purchasePower()}"
-)
-
-data class HandCards(
-  private val cards: List<Card>,
-) : Iterable<Card> by cards {
-  fun asList(): List<Card> {
-    return cards
-  }
+  private fun nextPlayerCards(
+    additionalPlayedCards: List<Card> = emptyList(),
+  ) = drawingNewHand(
+    deck = deck,
+    played = cardsPlayed + hand.asList() + additionalPlayedCards,
+  )
   
-  fun purchasePower(): Int {
-    return cards.sumOf { it.purchasePower }
+  companion object {
+    fun createBeginningSetup(): PlayerCards {
+      return drawingNewHand(
+        deck = createStartingDeck().shuffled(),
+        played = emptyList(),
+      )
+    }
+    
+    fun drawingNewHand(
+      deck: Deck,
+      played: List<Card> = emptyList(),
+    ) = if (deck.remainingCards() >= 5) {
+      drawingHandFromExistingDeck(
+        deck = deck,
+        played = played
+      )
+    } else {
+      drawingHandFromDeckIncludingReshuffling(
+        deck = deck,
+        played = played
+      )
+    }
+    
+    private fun drawingHandFromDeckIncludingReshuffling(
+      deck: Deck,
+      played: List<Card>,
+    ): PlayerCards {
+      val resultOfFirstDraw =
+        deck.draw(deck.remainingCards())
+      val partialHand = resultOfFirstDraw.drawnCards
+      val resultOfSecondDraw =
+        Deck(played).shuffled().draw(5 - partialHand.size)
+      val totalDrawnCards = partialHand + resultOfSecondDraw.drawnCards
+      val newDeck = resultOfSecondDraw.newDeck
+      return PlayerCards(
+        hand = totalDrawnCards.toHand(),
+        deck = newDeck,
+        cardsPlayed = emptyList()
+      )
+    }
+    
+    private fun drawingHandFromExistingDeck(
+      deck: Deck,
+      played: List<Card>,
+    ): PlayerCards {
+      val resultOfDraw = deck.draw(5)
+      return PlayerCards(
+        hand = resultOfDraw.drawnCards.toHand(),
+        deck = resultOfDraw.newDeck,
+        cardsPlayed = played,
+      )
+    }
+    
   }
 }
+

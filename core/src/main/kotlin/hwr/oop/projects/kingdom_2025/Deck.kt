@@ -2,7 +2,7 @@ package hwr.oop.projects.kingdom_2025
 
 class Deck(
   val cards: List<Card>,
-) {
+) : Iterable<Card> by cards {
   
   fun remainingCards(): Int {
     return cards.size
@@ -21,24 +21,8 @@ class Deck(
     return DrawResult(newDeck, drawnCards)
   }
   
+  data class DrawResult(
+    val newDeck: Deck,
+    val drawnCards: List<Card>,
+  )
 }
-
-data class DrawResult(
-  val newDeck: Deck,
-  val drawnCards: List<Card>,
-)
-
-internal fun createStartingDeck(): Deck = Deck(startingCards().shuffled())
-
-internal fun startingCards(): List<Card> = listOf(
-  Card.Copper,
-  Card.Copper,
-  Card.Copper,
-  Card.Copper,
-  Card.Copper,
-  Card.Copper,
-  Card.Copper,
-  Card.Estate,
-  Card.Estate,
-  Card.Estate
-)

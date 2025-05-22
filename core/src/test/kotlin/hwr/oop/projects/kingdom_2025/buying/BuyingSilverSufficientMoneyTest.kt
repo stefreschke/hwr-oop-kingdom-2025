@@ -1,6 +1,6 @@
 package hwr.oop.projects.kingdom_2025.buying
 
-import assertAll
+import hwr.oop.projects.kingdom_2025.assertAll
 import hwr.oop.projects.kingdom_2025.Card.Silver
 import hwr.oop.projects.kingdom_2025.Deck
 import hwr.oop.projects.kingdom_2025.Game
@@ -8,8 +8,8 @@ import hwr.oop.projects.kingdom_2025.Player
 import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 
-typealias K = hwr.oop.projects.kingdom_2025.Card.Copper
-typealias A = hwr.oop.projects.kingdom_2025.Card.Estate
+typealias C = hwr.oop.projects.kingdom_2025.Card.Copper
+typealias E = hwr.oop.projects.kingdom_2025.Card.Estate
 
 class BuyingSilverSufficientMoneyTest : AnnotationSpec() {
   
@@ -20,9 +20,9 @@ class BuyingSilverSufficientMoneyTest : AnnotationSpec() {
       alice to Deck(
         cards = listOf(
           // first hand
-          A, A, K, K, K,
+          E, E, C, C, C,
           // second hand
-          K, K, K, K, A
+          C, C, C, C, E
         )
       )
     )
@@ -56,14 +56,14 @@ class BuyingSilverSufficientMoneyTest : AnnotationSpec() {
     // then
     val hand = cardsRetrieved.hand
     assertThat(hand)
-      .contains(K, K, K, K, A)
+      .contains(C, C, C, C, E)
   }
   
   @Test
   fun `games use deck per player`() {
     // given
-    val firstHand = listOf(A, A, K, K, K)
-    val secondHand = listOf(K, K, K, A, A)
+    val firstHand = listOf(E, E, C, C, C)
+    val secondHand = listOf(C, C, C, E, E)
     val game = Game(
       players = listOf(alice), decks = mapOf(
         alice to Deck(firstHand + secondHand)
@@ -81,8 +81,8 @@ class BuyingSilverSufficientMoneyTest : AnnotationSpec() {
   @Test
   fun `buying silver twice, deck reshuffles`() {
     // given
-    val firstHand = listOf(A, A, K, K, K)
-    val secondHand = listOf(K, K, K, A, A)
+    val firstHand = listOf(E, E, C, C, C)
+    val secondHand = listOf(C, C, C, E, E)
     val game = Game(
       players = listOf(alice), decks = mapOf(
         alice to Deck(firstHand + secondHand)

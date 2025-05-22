@@ -12,15 +12,15 @@ class Game(
   private val playerCardMap: AllPlayersCards = if (!playerCardMap.isEmpty()) {
     playerCardMap
   } else if (decks.isEmpty()) {
-    val map =
-      players.associateWith { PlayerCards(createStartingDeck().shuffled()) }
+    val map = players.associateWith { PlayerCards.createBeginningSetup() }
     AllPlayersCards(map)
   } else {
-    val map =
-      players.associateWith { player -> PlayerCards(decks[player]!!) }
+    val map = players.associateWith { player ->
+      val deck = decks[player] ?: playerNotAddingUpWithDeck(player, decks)
+      PlayerCards.drawingNewHand(deck)
+    }
     AllPlayersCards(map)
   }
-  
   
   fun cardsOf(player: Player): PlayerCards {
     return playerCardMap.cardsOf(player)
@@ -55,4 +55,13 @@ class Game(
     return cardsOf(turn).hand.purchasePower()
   }
   
+  private fun playerNotAddingUpWithDeck(
+    player: Player,
+    decks: Map<Player, Deck>,
+  ): Nothing {
+    throw IllegalArgumentException(
+      "Provided decks do not contain player $player," +
+          " expected any of $players, decks were $decks"
+    )
+  }
 }

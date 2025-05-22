@@ -6,12 +6,12 @@ import io.kotest.core.spec.style.AnnotationSpec
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 
-class DecksTest : AnnotationSpec() {
+class StartingDecksTest : AnnotationSpec() {
+  
+  private val deck = createStartingDeck()
   
   @Test
   fun `starting deck, has 10 cards`() {
-    // given
-    val deck = createStartingDeck()
     // when
     val cardsInDeck = deck.cards
     // then
@@ -20,8 +20,6 @@ class DecksTest : AnnotationSpec() {
   
   @Test
   fun `starting deck, contains 3 estate, 7 copper`() {
-    // given
-    val deck = createStartingDeck()
     // when
     val cardsInDeck = deck.cards
     // then
@@ -32,8 +30,6 @@ class DecksTest : AnnotationSpec() {
   
   @Test
   fun `starting deck, shuffled, different sequence`() {
-    // given
-    val deck = createStartingDeck()
     // when
     val shuffledDeck = deck.shuffled()
     // then
@@ -45,13 +41,9 @@ class DecksTest : AnnotationSpec() {
   
   @Test
   fun `exception, starting deck, 10 cards, draw 11, illegal argument`() {
-    // given
-    val deck = createStartingDeck()
     assertThatThrownBy {
-      // when
       deck.draw(11)
     }.hasMessageContaining(
-      // then
       "Cannot draw more cards than available",
       "requested: 11",
       "only available: 10"

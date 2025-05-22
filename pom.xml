@@ -21,18 +21,17 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.code.style>official</kotlin.code.style>
-    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     <kotlin.version>2.1.10</kotlin.version>
-    <kotlin.code.style>official</kotlin.code.style>
     <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-    <kotest.version>5.9.1</kotest.version>
-    <assertj-core.version>3.27.3</assertj-core.version>
+    <kotlin.code.style>official</kotlin.code.style>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
+    <!-- testing -->
+    <kotest.version>5.9.1</kotest.version>
+    <assertj-core.version>3.27.3</assertj-core.version>
     <pitest.version>1.19.1</pitest.version>
     <kotest-extensions-pitest.version>1.2.0</kotest-extensions-pitest.version>
   </properties>
